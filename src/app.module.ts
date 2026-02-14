@@ -11,13 +11,14 @@ import { AuthModule } from './auth/auth.module';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
+        entities: [__dirname + "/**/*.entity{.ts,.js}"],
         host: config.getOrThrow('DB_HOST'),
         port: Number(config.getOrThrow('DB_PORT')),
         username: config.getOrThrow('DB_USER'),
         password: config.getOrThrow('DB_PASS'),
         database: config.getOrThrow('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: true, // OK for dev, later switch to migrations
+        synchronize: true, 
       }),
     }),
 
